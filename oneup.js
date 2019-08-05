@@ -1,4 +1,5 @@
 // utilities to interface with the 1uphealth api servers side
+require('dotenv').config()
 const request = require('request')
 const async = require('async');
 const ONEUP_DEMOWEBAPPLOCAL_CLIENTID = process.env.ONEUP_DEMOWEBAPPLOCAL_CLIENTID
@@ -69,10 +70,14 @@ function createOneUpUser (email, callback) {
 
 // check for 1upehealth user
 function getOneUpUserId (email, callback) {
+  console.log("check here")
+  console.log(USER_API_URL)
+  debugger
   let getUrl = `${USER_API_URL}/user-management/v1/user?client_id=${ONEUP_DEMOWEBAPPLOCAL_CLIENTID}&client_secret=${ONEUP_DEMOWEBAPPLOCAL_CLIENTSECRET}&app_user_id=${email}`
   console.log(getUrl)
   request.get(getUrl, function(error, response, body) {
     console.log('body',response.statusCode,body,'----', getUrl)
+    console.log("got here!!")
     let jsbody = JSON.parse(body)
       callback(jsbody.oneup_user_id)
   })
@@ -114,7 +119,7 @@ function getFhirResourceBundle (apiVersion, resourceType, oneupAccessToken, call
         let jsbody = JSON.parse(body)
       } catch(e) {
         console.log('error***********', new Date(), url, options)
-      }      
+      }
     }
     callback(error, body)
   })

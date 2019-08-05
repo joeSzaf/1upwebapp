@@ -11,6 +11,7 @@ export default class Login extends React.Component {
       submitted: false,
       email: ''
     }
+    this.onSubmit = this.onSubmit.bind(this)
   }
 
   onSubmit = e => {

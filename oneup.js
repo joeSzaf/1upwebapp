@@ -105,9 +105,15 @@ function getFhirResourceBundle (apiVersion, resourceType, oneupAccessToken, call
     }
   }
   request.get(options, function(error, response, body) {
-    console.log('error', error)
-    console.log('url', url)
-    console.log('body', body)
+    // console.log('error', error)
+    // console.log('url', url)
+    // console.log('body', body)
+    if (resourceType === 'MedicationStatement'){
+      console.log("Look here for MedicationStatement data")
+      console.log('error', error)
+      console.log('url', url)
+      console.log('body', body)
+    }
     if (error) {
 
     } else {
@@ -120,6 +126,7 @@ function getFhirResourceBundle (apiVersion, resourceType, oneupAccessToken, call
     }
     callback(error, body)
   })
+
 }
 
 let endpointsToQuery = [
@@ -132,7 +139,7 @@ let endpointsToQuery = [
   {apiVersion: 'dstu2', resourceType: 'Observation'},
   {apiVersion: 'dstu2', resourceType: 'MedicationOrder'},
   {apiVersion: 'stu3', resourceType: 'MedicationDispense'},
-  {apiVersion: 'stu3', resourceType: 'MedicationStatement'},
+  {apiVersion: 'dstu2', resourceType: 'MedicationStatement'},
   {apiVersion: 'stu3', resourceType: 'MedicationOrder'},
   {apiVersion: 'dstu2', resourceType: 'Condition'},
   {apiVersion: 'dstu2', resourceType: 'AllergyIntolerance'}

@@ -6,6 +6,7 @@ import {FhirResource, Patient, Resources} from 'fhir-react'
 import dstu2Observation from '../tests/fixtures/dstu2/Observation.json'
 import dstu2Encounter from '../tests/fixtures/dstu2/Encounter.json'
 import dstu2Patient from '../tests/fixtures/dstu2/Patient.json'
+import MedicationStatement from '../tests/fixtures/stu3/MedicationStatement.js'
 //          <Resources.TestComponent data={["....haha"]}/>
 
 export default class Home extends React.Component {
@@ -24,6 +25,13 @@ export default class Home extends React.Component {
 
           <h1 className="text-center">Observation</h1>
           {dstu2Observation.entry.map(function(eachObservation){
+            return <FhirResource jsonOpen={true} fhirResource={eachObservation.resource} thorough={false}/>
+          })}
+
+          <h1>Joe</h1>
+
+          <h1 className="text-center">Medication Statement</h1>
+          {MedicationStatement.entry.map(function(eachObservation){
             return <FhirResource jsonOpen={true} fhirResource={eachObservation.resource} thorough={false}/>
           })}
 

@@ -68,6 +68,18 @@ export default class Dashboard extends React.Component {
               </div>)
             }.bind(this))}
           </div>
+          <h1>Joe's custom stuff</h1>
+          <div style={{textAlign:'left'}}>
+            {["MedicationStatement"].map(function(resourceType){
+              return (<div>
+                {typeof this.props.dashboard.resources[resourceType] != 'undefined' && this.props.dashboard.resources[resourceType].entry.length > 0 ? <h1>{resourceType}</h1> : ''}
+                {typeof this.props.dashboard.resources[resourceType] != 'undefined' ?  this.props.dashboard.resources[resourceType].entry.map(function(resourceContainer){
+                  return (<FhirResource fhirResource={resourceContainer.resource} />)
+                }.bind(this)):''}
+              <br />
+              </div>)
+            }.bind(this))}
+          </div>
         </div>
       </Layout>
     )
